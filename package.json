@@ -10,7 +10,7 @@
     "typescript",
     "course"
   ],
-  "author": "Maximilian Schwarzmüller",
+  "author": "Anton Kuzmitsky",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^4.3.4"
