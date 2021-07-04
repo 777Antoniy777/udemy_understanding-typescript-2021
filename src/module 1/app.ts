@@ -2,13 +2,13 @@ const number1 = 5;
 const number2 = 2.7;
 
 // 1) Стандартный алиас type и его использование
-type User = {
+type Person = {
   name: string;
   age: number;
   cities: [number, string];
 };
 
-const user: User = {
+const user: Person = {
   name: 'Tony',
   age: 25,
   cities: [2, 'moscow'],
@@ -36,7 +36,7 @@ const generateError = (param?: any): void | never => {
     throw {
       error: 'error',
       message: 'just message',
-      data: [1, 5],
+      data: [1, 2],
     };
   }
 };
@@ -49,11 +49,16 @@ try {
 
 // 4) Пример ф-ции Конструктора
 // в них всегда возврат void
-function User(name: string, age: number): void {
+type User = {
+  name: string;
+  age: number;
+};
+
+function User(this: User, name: string, age: number): void {
   this.name = name;
   this.age = age + 1;
 }
 
-const user1 = new User('Anton', 24);
+const user1 = new (User as any)('Anton', 24);
 
 console.log(user1)
