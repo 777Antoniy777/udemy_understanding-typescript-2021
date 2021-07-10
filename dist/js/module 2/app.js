@@ -1,6 +1,7 @@
 "use strict";
 const button = document.querySelector('button');
-button.addEventListener('click', () => {
-    console.log('here');
-});
+const clickHandler = (val) => {
+    console.log(val);
+};
+button.addEventListener('click', clickHandler.bind(null, 'My value'));
 //# sourceMappingURL=app.js.map
