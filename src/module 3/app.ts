@@ -12,7 +12,7 @@ class Hotel {
 
   // 5) static методы не привязаны к какому то классу, а привязаны ко всей группе классов
   // их вызывают без оператора new
-  static createHotelAdmin(name: string, age: number) {
+  static createHotelAdmin(name: string, age: number): { [key: string]: string | number } {
     return {
       name,
       age,
@@ -49,6 +49,10 @@ class SochiHotel extends Hotel {
     this.rooms = rooms;
   }
 
+  getHotelValue(): void {
+    console.log('Values from SochiClass:', this.title, this.guests);
+  }
+
   addEmployee(employee: string): void {
     if (this.employees.length > 5) {
       this.employees = [];
@@ -62,11 +66,54 @@ const admin1 = Hotel.createHotelAdmin('Aurora', 24);
 console.log('admin1', admin1)
 
 const hotel = new Hotel('At big daddy', 2);
-console.log(hotel)
-console.log(hotel.getHotelValue())
-console.log(hotel.addEmployee('Ivan'))
+console.log(hotel);
+hotel.getHotelValue();
+console.log(hotel.addEmployee('Ivan'));
 console.log(hotel.getGuests);
 hotel.setGuests = 5;
 
 const sochiHotel = new SochiHotel('Rose Hutor', 60);
-console.log(sochiHotel)
+console.log(sochiHotel);
+sochiHotel.getHotelValue();
+
+
+// 1) Абстрактные классы используются как шаблоны, когда не нужно создавать базовый объект
+abstract class Figure {
+  protected constructor(
+    public height: number,
+    public width: number,
+    public color: string
+  ) {
+    this.width = width;
+    this.height = height;
+    this.color = color;
+  }
+
+  // 2) абстр. методы или св-ва обозначаются только типами без значений
+  abstract createFigure(): { [key: string]: string | number };
+
+  showProperties(): void {
+    console.log(this.createFigure());
+  }
+}
+
+// 3) Вызвать абстр.метод или св-во нужно в наследуемом классе
+// и при этом не забыть его описать согласно типу в абстр.классе
+class Triangle extends Figure {
+  constructor(public type: string, height: number, width: number, color: string) {
+    super(height, width, color);
+    this.type = type;
+  }
+
+  createFigure() {
+    return {
+      type: this.type,
+      width: this.width,
+      height: this.height,
+      color: this.color,
+    };
+  }
+}
+
+const triangle = new Triangle('triangle', 30, 15, 'blue');
+triangle.showProperties();

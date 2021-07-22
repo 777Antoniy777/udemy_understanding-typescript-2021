@@ -36,6 +36,9 @@ class SochiHotel extends Hotel {
         this.rooms = rooms;
         this.rooms = rooms;
     }
+    getHotelValue() {
+        console.log('Values from SochiClass:', this.title, this.guests);
+    }
     addEmployee(employee) {
         if (this.employees.length > 5) {
             this.employees = [];
@@ -47,10 +50,41 @@ const admin1 = Hotel.createHotelAdmin('Aurora', 24);
 console.log('admin1', admin1);
 const hotel = new Hotel('At big daddy', 2);
 console.log(hotel);
-console.log(hotel.getHotelValue());
+hotel.getHotelValue();
 console.log(hotel.addEmployee('Ivan'));
 console.log(hotel.getGuests);
 hotel.setGuests = 5;
 const sochiHotel = new SochiHotel('Rose Hutor', 60);
 console.log(sochiHotel);
+sochiHotel.getHotelValue();
+class Figure {
+    constructor(height, width, color) {
+        this.height = height;
+        this.width = width;
+        this.color = color;
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
+    showProperties() {
+        console.log(this.createFigure());
+    }
+}
+class Triangle extends Figure {
+    constructor(type, height, width, color) {
+        super(height, width, color);
+        this.type = type;
+        this.type = type;
+    }
+    createFigure() {
+        return {
+            type: this.type,
+            width: this.width,
+            height: this.height,
+            color: this.color,
+        };
+    }
+}
+const triangle = new Triangle('triangle', 30, 15, 'blue');
+triangle.showProperties();
 //# sourceMappingURL=app.js.map
