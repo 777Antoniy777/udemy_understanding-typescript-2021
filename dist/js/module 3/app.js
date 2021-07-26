@@ -51,7 +51,7 @@ console.log('admin1', admin1);
 const hotel = new Hotel('At big daddy', 2);
 console.log(hotel);
 hotel.getHotelValue();
-console.log(hotel.addEmployee('Ivan'));
+hotel.addEmployee('Ivan');
 console.log(hotel.getGuests);
 hotel.setGuests = 5;
 const sochiHotel = new SochiHotel('Rose Hutor', 60);

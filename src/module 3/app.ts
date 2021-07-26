@@ -1,10 +1,20 @@
-class Hotel {
+interface IHotel {
+  title: string;
+  guests: number;
+  getGuests: number;
+  setGuests: number;
+  getHotelValue: () => void;
+  addEmployee: (employee: string) => void;
+}
+
+// 6) можно обозначить типы класса снаружи через interface, но обозначение внутри класса обязательно
+class Hotel implements IHotel {
   // title: string;
   // guests: number;
   // 4) Св-во protected позволяет изменять св-во класса в другом классе в отличие от private
   protected employees: string[] = [];
 
-  // 1) при указании типа свойства в конструктуре мы исключаем дублиравание типа в начале класса
+  // 1) при указании типа свойства в конструкторе мы исключаем дублиравание типа в начале класса
   constructor(public title: string, public guests: number = 1) {
     this.title = title;
     this.guests = guests;
@@ -65,14 +75,14 @@ class SochiHotel extends Hotel {
 const admin1 = Hotel.createHotelAdmin('Aurora', 24);
 console.log('admin1', admin1)
 
-const hotel = new Hotel('At big daddy', 2);
+const hotel: IHotel = new Hotel('At big daddy', 2);
 console.log(hotel);
 hotel.getHotelValue();
-console.log(hotel.addEmployee('Ivan'));
+hotel.addEmployee('Ivan');
 console.log(hotel.getGuests);
 hotel.setGuests = 5;
 
-const sochiHotel = new SochiHotel('Rose Hutor', 60);
+const sochiHotel: IHotel = new SochiHotel('Rose Hutor', 60);
 console.log(sochiHotel);
 sochiHotel.getHotelValue();
 
